@@ -64,13 +64,19 @@
           "metadata": {
             "description": "Will be"
           }
-      }
+      },
+      "nicName":{
+        "type": "string",
+        "metadata": {
+          "description": "Will be"
+        }
+    }
     },
     "variables": {
       "storageAccountName": "[parameters('storageAccountName')]",
       "imagePublisher": "Canonical",
       "imageOffer": "UbuntuServer",
-      "nicName": "myVMNic",
+      "nicName": "[parameters('nicName')]",
       "subnetName": "[parameters('subnetName')]",
       "storageAccountType": "Standard_LRS",
       "publicIPAddressName": "myPublicIP",
