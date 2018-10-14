@@ -40,6 +40,12 @@
         "metadata": {
           "description": "Location for all resources."
         }
+      },
+      "vnetName":{
+          "type": "string"
+      },
+      "subnetName":{
+          "type": "string"
       }
     },
     "variables": {
@@ -47,15 +53,13 @@
       "imagePublisher": "Canonical",
       "imageOffer": "UbuntuServer",
       "nicName": "myVMNic",
-      "addressPrefix": "10.0.0.0/16",
-      "subnetName": "Subnet",
-      "subnetPrefix": "10.0.0.0/24",
+      "subnetName": "[parameters('subnetName')]",
       "storageAccountType": "Standard_LRS",
       "publicIPAddressName": "myPublicIP",
       "publicIPAddressType": "Dynamic",
       "vmName": "MyUbuntuVM",
       "vmSize": "Standard_A1",
-      "virtualNetworkName": "MyVNET",
+      "virtualNetworkName": "[parameters('vnetName')]",
       "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
     },
     "resources": [
@@ -80,27 +84,6 @@
           "dnsSettings": {
             "domainNameLabel": "[parameters('dnsLabelPrefix')]"
           }
-        }
-      },
-      {
-        "apiVersion": "2017-04-01",
-        "type": "Microsoft.Network/virtualNetworks",
-        "name": "[variables('virtualNetworkName')]",
-        "location": "[parameters('location')]",
-        "properties": {
-          "addressSpace": {
-            "addressPrefixes": [
-              "[variables('addressPrefix')]"
-            ]
-          },
-          "subnets": [
-            {
-              "name": "[variables('subnetName')]",
-              "properties": {
-                "addressPrefix": "[variables('subnetPrefix')]"
-              }
-            }
-          ]
         }
       },
       {
