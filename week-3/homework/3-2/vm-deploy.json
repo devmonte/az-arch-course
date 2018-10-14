@@ -159,9 +159,6 @@
               "offer": "[variables('imageOffer')]",
               "sku": "[parameters('ubuntuOSVersion')]",
               "version": "latest"
-            },
-            "osDisk": {
-              "createOption": "FromImage"
             }
           },
           "networkProfile": {
