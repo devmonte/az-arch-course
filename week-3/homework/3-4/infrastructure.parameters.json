@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vnetName": {
+            "value": "pppp-prod-vnet"
+        },
+        "subnet1Name": {
+            "value": "pppp-subnet1"
+        },
+        "subnet2Name": {
+            "value": "pppp-subnet2"
+        },
+        "adminUsername": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/6f626870-9c4d-47b4-bad0-eacef2dd082d/resourceGroups/greg-prod-rg/providers/Microsoft.KeyVault/vaults/scisle-tajny"
+                },
+                "secretName": "user"
+            }
+        },
+        "adminPassword": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/6f626870-9c4d-47b4-bad0-eacef2dd082d/resourceGroups/greg-prod-rg/providers/Microsoft.KeyVault/vaults/scisle-tajny"
+                },
+                "secretName": "password"
+            }
+        },
+        "dns1LabelPrefix": {
+            "value": "ppppdns1"
+        },
+        "dns2LabelPrefix": {
+            "value": "ppppdns2"
+        },
+        "storageAccountName":{
+            "value": "ppppstorage"
+        },
+        "vmName1":{
+            "value": "ppaa-prod-vm"
+        },
+        "vmName2":{
+            "value": "ppbb-prod-vm"            
+        }
+    }
+}

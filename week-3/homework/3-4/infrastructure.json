@@ -1,0 +1,113 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vnetName": {
+            "defaultValue": "solution-vnet",
+            "type": "string"
+        },
+        "subnet1Name": {
+            "defaultValue": "main-subnet1",
+            "type": "string"
+        },
+        "subnet2Name": {
+            "defaultValue": "main-subnet2",
+            "type": "string"
+        },
+        "adminUsername": {
+            "type": "string"
+        },
+        "adminPassword": {
+            "type": "string"
+        },
+        "dns1LabelPrefix": {
+            "type": "string"
+        },
+        "dns2LabelPrefix": {
+            "type": "string"
+        },
+        "storageAccountName":{
+            "type": "string"
+        },
+        "vmName1":{
+            "type": "string"
+        },
+        "vmName2":{
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "apiVersion": "2017-05-10",
+            "name": "network",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-vnet-two-subnets/azuredeploy.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters":{
+                    "vnetName":{"value": "[parameters('vnetName')]"},
+                    "subnet1Name":{"value": "[parameters('subnet1Name')]"},
+                    "subnet2Name":{"value": "[parameters('subnet2Name')]"}
+                }
+            }
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "vm1",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/devmonte/az-arch-course/master/week-3/homework/3-2/vm-deploy.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters":{
+                    "adminUsername":{"value":"[parameters('adminUsername')]"},
+                    "adminPassword":{"value":"[parameters('adminPassword')]"},
+                    "dnsLabelPrefix":{"value":"[parameters('dns1LabelPrefix')]"},
+                    "vnetName":{"value":"[parameters('vnetName')]"},
+                    "subnetName":{"value":"[parameters('subnet1Name')]"},
+                    "storageAccountName":{"value":"[parameters('storageAccountName')]"},
+                    "vmName":{"value":"[parameters('vmName1')]"},
+                    "nicName":{"value":"nicName1"},
+                    "vmdiskName": {"value":"test-disk-vmdisk"},
+                    "publicIpName": {"value":"publicIp2"}
+                }
+            },
+            "dependsOn": [
+                "network"
+            ]
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "vm2",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/devmonte/az-arch-course/master/week-3/homework/3-2/vm-deploy.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters":{
+                    "adminUsername":{"value":"[parameters('adminUsername')]"},
+                    "adminPassword":{"value":"[parameters('adminPassword')]"},
+                    "dnsLabelPrefix":{"value":"[parameters('dns2LabelPrefix')]"},
+                    "vnetName":{"value":"[parameters('vnetName')]"},
+                    "subnetName":{"value":"[parameters('subnet2Name')]"},
+                    "storageAccountName":{"value":"[parameters('storageAccountName')]"},
+                    "vmName":{"value":"[parameters('vmName2')]"},
+                    "nicName":{"value":"nicName2"},
+                    "vmdiskName": {"value":"rest-disk-vmdisk"},
+                    "publicIpName": {"value":"publicIp1"}
+                }
+            },
+            "dependsOn": [
+                "vm1"
+            ]
+        }
+    ]
+}
