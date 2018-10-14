@@ -1,0 +1,19 @@
+{
+    "if": {
+        "allOf": [
+           {
+              "field": "type",
+              "equals": "Microsoft.Compute/disks"
+           },
+           {
+              "not": {
+                 "field": "Name",
+                 "match": "*-*-vmdisk"
+              }
+           }
+        ]
+     },
+    "then": {
+        "effect": "deny"
+    }
+}
