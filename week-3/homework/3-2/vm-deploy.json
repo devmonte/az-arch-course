@@ -46,10 +46,16 @@
       },
       "subnetName":{
           "type": "string"
+      },
+      "storageAccountName":{
+          "type": "string"
+      },
+      "vmName":{
+          "type": "string"
       }
     },
     "variables": {
-      "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'salinuxvm')]",
+      "storageAccountName": "[parameters('storageAccountName')]",
       "imagePublisher": "Canonical",
       "imageOffer": "UbuntuServer",
       "nicName": "myVMNic",
@@ -57,7 +63,7 @@
       "storageAccountType": "Standard_LRS",
       "publicIPAddressName": "myPublicIP",
       "publicIPAddressType": "Dynamic",
-      "vmName": "MyUbuntuVM",
+      "vmName": "[parameters('vmName')]",
       "vmSize": "Standard_A1",
       "virtualNetworkName": "[parameters('vnetName')]",
       "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
