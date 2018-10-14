@@ -76,6 +76,12 @@
             "metadata": {
                 "description": "Will be"
             }
+        },
+        "publicIpName": {
+            "type": "string",
+            "metadata": {
+                "description": "Will be"
+            }
         }
     },
     "variables": {
@@ -85,7 +91,7 @@
         "nicName": "[parameters('nicName')]",
         "subnetName": "[parameters('subnetName')]",
         "storageAccountType": "Standard_LRS",
-        "publicIPAddressName": "myPublicIP",
+        "publicIPAddressName": "[parameters('publicIpName')]",
         "publicIPAddressType": "Dynamic",
         "vmName": "[parameters('vmName')]",
         "vmSize": "Standard_A1",
