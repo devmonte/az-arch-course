@@ -42,16 +42,28 @@
         }
       },
       "vnetName":{
-          "type": "string"
+          "type": "string",
+          "metadata": {
+            "description": "Will be"
+          }
       },
       "subnetName":{
-          "type": "string"
+          "type": "string",
+          "metadata": {
+            "description": "Will be"
+          }
       },
       "storageAccountName":{
-          "type": "string"
+          "type": "string",
+          "metadata": {
+            "description": "Will be"
+          }
       },
       "vmName":{
-          "type": "string"
+          "type": "string",
+          "metadata": {
+            "description": "Will be"
+          }
       }
     },
     "variables": {
