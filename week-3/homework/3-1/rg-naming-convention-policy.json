@@ -7,8 +7,8 @@
            },
            {
               "not": {
-                 "field": "Name",
-                 "match": "*-*-rg"
+                 "field": "name",
+                 "match": "????-????-rg"
               }
            }
         ]

@@ -7,8 +7,8 @@
            },
            {
               "not": {
-                 "field": "Name",
-                 "match": "*-*-vnet"
+                 "field": "name",
+                 "match": "????-????-vnet"
               }
            }
         ]

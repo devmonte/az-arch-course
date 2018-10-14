@@ -7,8 +7,8 @@
            },
            {
               "not": {
-                 "field": "Name",
-                 "match": "*-*-vmdisk"
+                 "field": "name",
+                 "match": "????-????-vmdisk"
               }
            }
         ]
